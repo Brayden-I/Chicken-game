@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dm65rjhouitmn"]
+
+[ext_resource type="Script" uid="uid://ddxp5eniwkps" path="res://scripts/bsp/bsp_generator.gd" id="1_emkh7"]
+
+[node name="Dungeon" type="Node2D" unique_id=479707790]
+
+[node name="BSPGenerator" type="Node2D" parent="." unique_id=1478254557]
+script = ExtResource("1_emkh7")
