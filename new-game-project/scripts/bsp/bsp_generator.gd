@@ -1,5 +1,7 @@
 class_name BSPGenerator extends Node2D
 
+signal new_split_made(area: Array[Rect2])
+
 @export var minimum_room_size: Vector2
 
 # Generate subdivisions of rooms and return BSPDungeonINfo
@@ -14,10 +16,14 @@ func generate_rooms(size: Vector2) -> BSPDungeonInfo:
 	while !area_queue.is_empty():
 		var current_area: BSPRoomNode = area_queue.pop_front()
 		
-		for sub_area in split(current_area.room_info):
+		var split_rooms: = split(current_area.room_info)
+		
+		for sub_area in split_rooms:
 			var sub_room_node: BSPRoomNode = BSPRoomNode.new(sub_area)
 			current_area.sub_division.push_back(sub_room_node)
 			area_queue.push_back(sub_area)
+			
+		new_split_made.emit(split_rooms)
 	return result
 
 ## Given an area of a dungeon split into 2 parts using a minimum and a maximum
