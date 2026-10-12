@@ -7,3 +7,9 @@
 script = ExtResource("1_ah75f")
 
 [node name="BSPGenerator" parent="." unique_id=591927649 instance=ExtResource("2_bdylc")]
+
+[node name="DungeonDrawTimer" type="Timer" parent="." unique_id=879912812]
+autostart = true
+
+[connection signal="new_split_made" from="BSPGenerator" to="." method="_on_bsp_generator_new_split_made"]
+[connection signal="timeout" from="DungeonDrawTimer" to="." method="_on_dungeon_draw_timer_timeout"]
