@@ -2,27 +2,28 @@ class_name BSPGenerator extends Node2D
 
 signal new_split_made(area: Array[Rect2])
 
-@export var minimum_room_size: Vector2
+# Must be > 0, otherwise areas can always be split and generation never ends.
+@export var minimum_room_size: Vector2 = Vector2(100, 100)
 
-# Generate subdivisions of rooms and return BSPDungeonINfo
+# Generate subdivisions of rooms and return BSPDungeonInfo
 func generate_rooms(size: Vector2) -> BSPDungeonInfo:
 
 	var starting_area: Rect2 = Rect2(Vector2(0,0), size)
 	var result: BSPDungeonInfo = BSPDungeonInfo.new()
 	result.root = BSPRoomNode.new(starting_area)
-	
+
 	var area_queue: Array[BSPRoomNode] = [result.root]
-	# itereate through area queues until there is no more
+	# iterate through area queues until there is no more
 	while !area_queue.is_empty():
 		var current_area: BSPRoomNode = area_queue.pop_front()
-		
-		var split_rooms: = split(current_area.room_info)
-		
+
+		var split_rooms: Array[Rect2] = split(current_area.room_info)
+
 		for sub_area in split_rooms:
 			var sub_room_node: BSPRoomNode = BSPRoomNode.new(sub_area)
 			current_area.sub_division.push_back(sub_room_node)
-			area_queue.push_back(sub_area)
-			
+			area_queue.push_back(sub_room_node)
+
 		new_split_made.emit(split_rooms)
 	return result
 
@@ -32,15 +33,15 @@ func split(area: Rect2) -> Array[Rect2]:
 	if area.size.x < 2 * minimum_room_size.x || area.size.y < 2 * minimum_room_size.y:
 		# the area cannot be split
 		return []
-	
+
 	var result: Array[Rect2] = []
 	var is_split_vertical: bool = randi_range(0,1) == 0
 	if is_split_vertical:
-		var split_x_position: int = randi_range(minimum_room_size.x, area.size.x - minimum_room_size.x)
+		var split_x_position: int = randi_range(int(minimum_room_size.x), int(area.size.x - minimum_room_size.x))
 		result.push_back(Rect2(area.position, Vector2(split_x_position, area.size.y)))
-		result.push_back(Rect2(area.position + Vector2(split_x_position, 0), Vector2(split_x_position - split_x_position, area.size.y)))
+		result.push_back(Rect2(area.position + Vector2(split_x_position, 0), Vector2(area.size.x - split_x_position, area.size.y)))
 	else:
-		var split_y_position: int = randi_range(minimum_room_size.y, area.size.y - minimum_room_size.y)
-		result.push_back(Rect2(area.position, Vector2(area.size.y, split_y_position)))
-		result.push_back(Rect2(area.position + Vector2(0, split_y_position), Vector2(area.size.y, split_y_position - split_y_position)))
+		var split_y_position: int = randi_range(int(minimum_room_size.y), int(area.size.y - minimum_room_size.y))
+		result.push_back(Rect2(area.position, Vector2(area.size.x, split_y_position)))
+		result.push_back(Rect2(area.position + Vector2(0, split_y_position), Vector2(area.size.x, area.size.y - split_y_position)))
 	return result
