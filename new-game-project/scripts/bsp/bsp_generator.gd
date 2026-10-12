@@ -1,7 +1,6 @@
 class_name BSPGenerator extends Node2D
 
 @export var minimum_room_size: Vector2
-@export var maximum_room_size: Vector2
 
 # Generate subdivisions of rooms and return BSPDungeonINfo
 func generate_rooms(size: Vector2) -> BSPDungeonInfo:
