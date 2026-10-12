@@ -7,6 +7,7 @@
 script = ExtResource("1_ah75f")
 
 [node name="BSPGenerator" parent="." unique_id=591927649 instance=ExtResource("2_bdylc")]
+minimum_room_size = Vector2(100, 100)
 
 [node name="DungeonDrawTimer" type="Timer" parent="." unique_id=879912812]
 autostart = true
