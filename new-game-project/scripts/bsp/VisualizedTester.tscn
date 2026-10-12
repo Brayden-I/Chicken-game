@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dm65rjhouitmn"]
+
+[ext_resource type="Script" uid="uid://c0j5d1ubg1xhr" path="res://scripts/bsp/visualized_tester.gd" id="1_ah75f"]
+[ext_resource type="PackedScene" uid="uid://cbwixurc7bgw8" path="res://scripts/bsp/BSPGenerator.tscn" id="2_bdylc"]
+
+[node name="Dungeon" type="Node2D" unique_id=479707790]
+script = ExtResource("1_ah75f")
+
+[node name="BSPGenerator" parent="." unique_id=591927649 instance=ExtResource("2_bdylc")]
