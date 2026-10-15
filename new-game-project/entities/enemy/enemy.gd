@@ -1,9 +1,12 @@
-extends CharacterBody2D
+class_name Enemy extends CharacterBody2D
 
 signal died
 
 @onready var sprite: AnimatedSprite2D = $sprite
 @onready var enemy_hitbox: Area2D = $enemy_hitbox
+@onready var detection_shape: CollisionShape2D = $detection_area/CollisionShape2D
+
+@export var data: EnemyData
 
 @export var movement_speed := 80.0  # pixels per second
 @export var health := 100
@@ -19,6 +22,21 @@ var knockback := Vector2.ZERO
 var entity: Node2D = null
 
 var _flash_tween: Tween
+
+func _ready() -> void:
+	if data:
+		_apply_data()
+
+func _apply_data() -> void:
+	health = data.max_health
+	movement_speed = data.move_speed
+	attack_damage = data.attack_damage
+	if data.sprite_frames:
+		sprite.sprite_frames = data.sprite_frames
+	# The circle is shared by every instance of this scene, so copy it before resizing.
+	var circle := detection_shape.shape.duplicate() as CircleShape2D
+	circle.radius = data.detection_radius
+	detection_shape.shape = circle
 
 func _physics_process(delta: float) -> void:
 	if not alive:
