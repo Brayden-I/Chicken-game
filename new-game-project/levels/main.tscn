@@ -13,3 +13,11 @@ motion_mode = 1
 
 [node name="Player" parent="." unique_id=1375441871 instance=ExtResource("1_ig7tw")]
 position = Vector2(-17, 28)
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=911077458]
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawner" unique_id=192501230]
+position = Vector2(-307, -196)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawner" unique_id=725797239]
+position = Vector2(325, -184)
