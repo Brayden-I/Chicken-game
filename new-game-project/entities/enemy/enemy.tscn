@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cohiqpndtgam"]
 
-[ext_resource type="Script" uid="uid://cuqk7j1gp32p3" path="res://scenes/scripts/enemy.gd" id="1_5uy6h"]
+[ext_resource type="Script" uid="uid://cuqk7j1gp32p3" path="res://entities/enemy/enemy.gd" id="1_5uy6h"]
 [ext_resource type="Texture2D" uid="uid://jacixktdynbk" path="res://assets/enemies/SoldiersPixelArt/RifleSoldierFire/EastRifleSoldierFire.png" id="2_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://cjhrrwksempij" path="res://assets/enemies/SoldiersPixelArt/RifleSoldierIdle/EastRifleSoldierIdle.png" id="3_xwavj"]
 [ext_resource type="Texture2D" uid="uid://cjesueskq4ynl" path="res://assets/enemies/SoldiersPixelArt/RifleSoldierWalking/EastRifleSoldierWalking.png" id="4_nenq2"]
