@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://entities/player/Player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://entities/enemy/enemy.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://b3tu350lhhpsq" path="res://entities/enemy/spawning/spawn_point.gd" id="3_l8qe7"]
 
 [node name="Node2D" type="Node2D" unique_id=1390894314]
 
@@ -16,8 +17,12 @@ position = Vector2(-17, 28)
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=911077458]
 
-[node name="Marker2D" type="Marker2D" parent="EnemySpawner" unique_id=192501230]
-position = Vector2(-307, -196)
+[node name="SpawnPoint" type="Marker2D" parent="EnemySpawner" unique_id=1565646063]
+position = Vector2(415, -2)
+script = ExtResource("3_l8qe7")
+metadata/_custom_type_script = "uid://b3tu350lhhpsq"
 
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawner" unique_id=725797239]
-position = Vector2(325, -184)
+[node name="SpawnPoint2" type="Marker2D" parent="EnemySpawner" unique_id=1978341230]
+position = Vector2(-484, 0)
+script = ExtResource("3_l8qe7")
+metadata/_custom_type_script = "uid://b3tu350lhhpsq"
