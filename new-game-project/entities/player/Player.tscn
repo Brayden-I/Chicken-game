@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://be8qbmt0fe144"]
 
-[ext_resource type="Texture2D" uid="uid://bb1jlw68ld6f0" path="res://assets/Chicken_Sprite_Sheet.png" id="1_p0vlq"]
-[ext_resource type="Script" uid="uid://8r8kf3yaj3q4" path="res://scenes/scripts/player.gd" id="1_v6fml"]
+[ext_resource type="Texture2D" uid="uid://bb1jlw68ld6f0" path="res://assets/player/Chicken_Sprite_Sheet.png" id="1_p0vlq"]
+[ext_resource type="Script" uid="uid://8r8kf3yaj3q4" path="res://entities/player/player.gd" id="1_v6fml"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6fml"]
 atlas = ExtResource("1_p0vlq")

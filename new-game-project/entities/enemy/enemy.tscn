@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cohiqpndtgam"]
 
-[ext_resource type="Script" uid="uid://cuqk7j1gp32p3" path="res://scenes/scripts/enemy.gd" id="1_5uy6h"]
+[ext_resource type="Script" uid="uid://cuqk7j1gp32p3" path="res://entities/enemy/enemy.gd" id="1_5uy6h"]
 [ext_resource type="Texture2D" uid="uid://jacixktdynbk" path="res://assets/enemies/SoldiersPixelArt/RifleSoldierFire/EastRifleSoldierFire.png" id="2_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://cjhrrwksempij" path="res://assets/enemies/SoldiersPixelArt/RifleSoldierIdle/EastRifleSoldierIdle.png" id="3_xwavj"]
 [ext_resource type="Texture2D" uid="uid://cjesueskq4ynl" path="res://assets/enemies/SoldiersPixelArt/RifleSoldierWalking/EastRifleSoldierWalking.png" id="4_nenq2"]
@@ -150,7 +150,7 @@ script = ExtResource("1_5uy6h")
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1955140415]
 sprite_frames = SubResource("SpriteFrames_v4nol")
 animation = &"fire"
-frame_progress = 0.5407236
+frame_progress = 0.0100667905
 offset = Vector2(0, -14)
 
 [node name="detection_area" type="Area2D" parent="." unique_id=1741458476]

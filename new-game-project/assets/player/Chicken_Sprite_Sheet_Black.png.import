@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6ix6ohy6w4hj"
-path="res://.godot/imported/Chicken_Sprite_Sheet_Black.png-40160ab921071bbde1a8c16db5c964dd.ctex"
+path="res://.godot/imported/Chicken_Sprite_Sheet_Black.png-effe9241ee5ddac71ccb7059ecfd2a5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Chicken_Sprite_Sheet_Black.png"
-dest_files=["res://.godot/imported/Chicken_Sprite_Sheet_Black.png-40160ab921071bbde1a8c16db5c964dd.ctex"]
+source_file="res://assets/player/Chicken_Sprite_Sheet_Black.png"
+dest_files=["res://.godot/imported/Chicken_Sprite_Sheet_Black.png-effe9241ee5ddac71ccb7059ecfd2a5d.ctex"]
 
 [params]
 
