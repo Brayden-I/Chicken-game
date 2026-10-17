@@ -3,7 +3,12 @@ class_name BSPRoomNode extends Resource
 @export var room_info: Rect2
 @export var sub_division: Array[BSPRoomNode]
 
-# Default argument so Godot can create this Resource without arguments (e.g. when loading/inspecting it).
-func _init(_room_info: Rect2 = Rect2()):
+# New enum
+enum RoomType { BUILDING, PATH, ARENA, LOOT }
+
+@export var type: RoomType = RoomType.BUILDING
+
+func _init(_room_info: Rect2 = Rect2(), _type: RoomType = RoomType.BUILDING):
 	room_info = _room_info
+	type = _type
 	sub_division = []

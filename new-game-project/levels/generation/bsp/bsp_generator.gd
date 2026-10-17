@@ -38,7 +38,9 @@ func _ready() -> void:
 		generate()
 
 func generate() -> BSPDungeonInfo:
-	return generate_rooms(dungeon_size)
+	var dungeon = generate_rooms(dungeon_size)
+	tag_path_and_arenas(dungeon)
+	return dungeon
 
 func generate_rooms(size: Vector2) -> BSPDungeonInfo:
 	if use_random_seed:
@@ -100,3 +102,27 @@ func _pick_cut(length: float, min_length: float) -> int:
 	var low: int = ceili(maxf(min_length, length * min_split_fraction))
 	var high: int = maxi(low, floori(length - maxf(min_length, length * min_split_fraction)))
 	return _rng.randi_range(low, high)
+
+func tag_path_and_arenas(dungeon: BSPDungeonInfo):
+	var main_path = find_main_path(dungeon.root)
+	for room in main_path:
+		room.type = BSPRoomNode.RoomType.PATH
+
+	var num_arenas = int(main_path.size() * 0.1) # 10% of the main path rooms
+	for i in range(num_arenas):
+		var index = _rng.randi_range(0, main_path.size() - 1)
+		main_path[index].type = BSPRoomNode.RoomType.ARENA
+
+func find_main_path(node: BSPRoomNode) -> Array[BSPRoomNode]:
+	var path: Array[BSPRoomNode] = []
+	if node.sub_division.size() == 0:
+		path.push_back(node)
+	else:
+		var longest_path: Array[BSPRoomNode] = []
+		for child in node.sub_division:
+			var child_path = find_main_path(child)
+			if child_path.size() > longest_path.size():
+				longest_path = child_path
+		for room in longest_path:
+			path.push_back(room)
+	return path

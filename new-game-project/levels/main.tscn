@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cqow47bch5ocs"]
 
-[ext_resource type="PackedScene" uid="uid://cbwixurc7bgw8" path="res://scripts/bsp/BSPGenerator.tscn" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/Player.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://c0j5d1ubg1xhr" path="res://scripts/bsp/visualized_tester.gd" id="1_lquwl"]
-[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://scenes/enemy.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cbwixurc7bgw8" path="res://levels/generation/bsp/BSPGenerator.tscn" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://entities/player/Player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c0j5d1ubg1xhr" path="res://dev/visualized_tester.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://entities/enemy/enemy.tscn" id="2_0xm2m"]
 
 [node name="Node2D" type="Node2D" unique_id=1390894314]
 
@@ -12,7 +12,6 @@ script = ExtResource("1_lquwl")
 
 [node name="BSPGenerator" parent="DungeonVisualizer" unique_id=591927649 instance=ExtResource("1_1bvp3")]
 dungeon_size = Vector2(2000, 2000)
-minimum_room_size = Vector2(300, 300)
 
 [node name="DungeonDrawTimer" type="Timer" parent="DungeonVisualizer" unique_id=879912812]
 autostart = true
