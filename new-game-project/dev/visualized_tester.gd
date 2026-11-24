@@ -22,10 +22,6 @@ func _ready() -> void:
 	# Connect the ready signal to a custom function
 	call_deferred("_generate_dungeon")
 
-func _generate_dungeon() -> void:
-	dungeon_info = bsp_generator.generate_rooms(get_viewport_rect().size)
-	_build_room_lookup(dungeon_info.root)
-
 func _draw() -> void:
 	var font := ThemeDB.fallback_font
 	for i in drawn_rects.size():
@@ -41,36 +37,24 @@ func _draw() -> void:
 		draw_string(font, Vector2(rect.position.x, baseline_y), drawn_labels[i],
 				HORIZONTAL_ALIGNMENT_CENTER, rect.size.x, LABEL_FONT_SIZE, text_color)
 
+func _generate_dungeon() -> void:
+	dungeon_info = bsp_generator.generate_rooms(get_viewport_rect().size)
+	bsp_generator.tag_path_and_arenas(dungeon_info)
+	_build_room_lookup(dungeon_info.root)
+
 func _on_bsp_generator_new_split_made(area: Array[Rect2]) -> void:
-	# Leaves that couldn't be split emit an empty array; skip them so timer ticks aren't wasted.
 	if not area.is_empty():
-		var room_types: Array[BSPRoomNode.RoomType] = []
-		for room in area:
-			# O(1) dict lookup instead of recursive tree walk.
-			var node: BSPRoomNode = _room_lookup.get(room, null)
-			if node:
-				room_types.append(node.type)
-			else:
-				print("Warning: No node found for room", room)
-		draw_queue.push_back({"rects": area, "types": room_types})
-		print("Added batch with", area.size(), "rects and", room_types.size(), "room_types")
+		draw_queue.push_back(area)   # back to the plain Array[Rect2]
 
 func _on_dungeon_draw_timer_timeout() -> void:
 	if draw_queue.is_empty():
 		dungeon_draw_timer.stop()
 		return
 
-	var batch: Dictionary = draw_queue.pop_front()
-	var rects: Array[Rect2] = batch["rects"]
-	var room_types: Array[BSPRoomNode.RoomType] = batch["types"]
-
-	if rects.is_empty() or room_types.is_empty() or rects.size() != room_types.size():
-		print("Error: rects or room_types is empty or mismatched sizes")
-		return
-
-	for i in rects.size():
-		var rect := rects[i]
-		var room_type := room_types[i]
+	var rects: Array[Rect2] = draw_queue.pop_front()
+	for rect in rects:
+		var node: BSPRoomNode = _room_lookup.get(rect, null)
+		var room_type := node.type if node else BSPRoomNode.RoomType.BUILDING
 		var long_side := maxf(rect.size.x, rect.size.y)
 		var short_side := minf(rect.size.x, rect.size.y)
 		var is_square := long_side <= short_side * SQUARE_RATIO
